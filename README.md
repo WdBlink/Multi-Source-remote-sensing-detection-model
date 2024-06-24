@@ -1,8 +1,7 @@
 # Multi-Source-remote-sensing-detection-model
-# Multi-Source-remote-sensing-detection-model
 
 [![New](https://img.shields.io/badge/2024-NEW-brightgreen.svg)](https://github.com/DocF/multispectral-object-detection/)
-![Visitors](https://visitor-badge.glitch.me/badge?page_id=DocF.multispectral-object-detection)
+
 [![GitHub stars](https://img.shields.io/github/stars/WdBlink/Multi-Source-remote-sensing-detection-model.svg?style=social&label=Stars)](https://github.com/WdBlink/Multi-Source-remote-sensing-detection-model)
 
 
