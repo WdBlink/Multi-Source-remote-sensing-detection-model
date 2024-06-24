@@ -5,6 +5,7 @@ import sys
 from PIL.Image import ImagePointHandler
 from tqdm import tqdm
 from utils.general import download, Path
+import argparse
 
 class_names = ['1']
 
@@ -30,25 +31,32 @@ def convert_label(path, lb_path, year, image_id):
             cls_id = class_names.index(cls)  # class id
             out_file.write(" ".join([str(a) for a in (cls_id, *bb)]) + '\n')
 
-# Convert
-path = '/home/wdblink/Dataset/dense_region/VocFormat'
-for spectial, image_set in (('rgb', 'train'), ('rgb', 'val'), ('rgb', 'trainval'), ('rgb', 'test'),
-                        ('dsm', 'train'), ('dsm', 'val'), ('dsm', 'trainval'), ('dsm', 'test')):
-    # imgs_path = dir / 'images' / f'{image_set}{year}'
-    imgs_path = os.path.join(path, 'images', f'{image_set}_{spectial}')
-    # lbs_path = dir / 'labels' / f'{image_set}{year}'
-    lbs_path = os.path.join(path, 'labels', f'{image_set}_{spectial}')
-    if os.path.exists(imgs_path):
-        pass
-    else:
-        os.makedirs(imgs_path)
-        os.makedirs(lbs_path)
-    # imgs_path.mkdir(exist_ok=True, parents=True)
-    # lbs_path.mkdir(exist_ok=True, parents=True)
-    image_ids = open(f'{path}/ImageSets/Main/{image_set}.txt').read().strip().split()
-    for id in tqdm(image_ids, desc=f'{image_set}{spectial}'):
-        f = f'{path}/JPEGImages/{spectial}/{id}.tif'  # old img path
-        # lb_path = (lbs_path / f.name).with_suffix('.txt')  # new label path
-        lb_path = os.path.join(lbs_path, f"{id}.txt")
-        shutil.copyfile(f, f'{imgs_path}/{id}.tif')
-        convert_label(path, lb_path, spectial, id)  # convert labels to YOLO format
+def main(path):
+    # Convert
+    for spectial, image_set in (('images', 'train'), ('images', 'val'), ('images', 'trainval'), ('images', 'test'),
+                            ('images2', 'train'), ('images2', 'val'), ('images2', 'trainval'), ('images2', 'test')):
+        # imgs_path = dir / 'images' / f'{image_set}{year}'
+        imgs_path = os.path.join(path, 'images', f'{image_set}_{spectial}')
+        # lbs_path = dir / 'labels' / f'{image_set}{year}'
+        lbs_path = os.path.join(path, 'labels', f'{image_set}_{spectial}')
+        if os.path.exists(imgs_path):
+            pass
+        else:
+            os.makedirs(imgs_path)
+            os.makedirs(lbs_path)
+        # imgs_path.mkdir(exist_ok=True, parents=True)
+        # lbs_path.mkdir(exist_ok=True, parents=True)
+        image_ids = open(f'{path}/ImageSets/Main/{image_set}.txt').read().strip().split()
+        for id in tqdm(image_ids, desc=f'{image_set}{spectial}'):
+            f = f'{path}/JPEGImages/{spectial}/{id}.tif'  # old img path
+            # lb_path = (lbs_path / f.name).with_suffix('.txt')  # new label path
+            lb_path = os.path.join(lbs_path, f"{id}.txt")
+            shutil.copyfile(f, f'{imgs_path}/{id}.tif')
+            convert_label(path, lb_path, spectial, id)  # convert labels to YOLO format
+
+if __name__ == '__main__':
+    argparses = argparse.ArgumentParser()
+    argparses.add_argument('--source_folder', type=str, default='/home/wdblink/Dataset/dense_region/VocFormat')
+    args = argparses.parse_args()
+    source_folder = args.source_folder
+    main(source_folder)
