@@ -44,8 +44,8 @@ def check_and_generate_annotations(images_dir, annotations_dir):
             print(f'Generated empty annotation for {img}')
 
 # Change these paths to your actual directories
-images_dir = '/home/wdblink/Dataset/trees_dataset_VOC_613/VocFormat/JPEGImages/rgb/'
-annotations_dir = '/home/wdblink/Dataset/trees_dataset_VOC_613/VocFormat/Annotations/'
+images_dir = '/home/wdblink/Dataset/RGB-DSM/images'
+annotations_dir = '/home/wdblink/Dataset/RGB-DSM/labels'
 
 check_and_generate_annotations(images_dir, annotations_dir)
 

@@ -915,12 +915,12 @@ def train_rgb_ir(hyp, opt, device, tb_writer=None):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', type=str, default='/home/wdblink/github/multispectral-object-detection/runs/train/exp28/weights/part_of_training.pt', help='initial weights path')
-    parser.add_argument('--cfg', type=str, default='./models/transformer/yolov5l_fusion_transformerx3_llvip.yaml', help='model.yaml path')
+    parser.add_argument('--weights', type=str, default='/home/wdblink/github/multispectral-object-detection/yolov5l.pt', help='initial weights path')
+    parser.add_argument('--cfg', type=str, default='./models/transformer/yolov5l_fusion_transformerx3_FLIR_aligned.yaml', help='model.yaml path')
     parser.add_argument('--data', type=str, default='./data/multispectral/tree_dsm.yaml', help='data.yaml path')
     parser.add_argument('--hyp', type=str, default='data/hyp.scratch.yaml', help='hyperparameters path')
     parser.add_argument('--epochs', type=int, default=300)
-    parser.add_argument('--batch-size', type=int, default=8, help='total batch size for all GPUs')
+    parser.add_argument('--batch-size', type=int, default=16, help='total batch size for all GPUs')
     parser.add_argument('--img-size', nargs='+', type=int, default=[640, 640], help='[train, test] image sizes')
     parser.add_argument('--rect', action='store_true', help='rectangular training')
     parser.add_argument('--resume', nargs='?', const=True, default=False, help='resume most recent training')

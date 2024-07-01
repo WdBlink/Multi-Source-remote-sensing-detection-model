@@ -54,9 +54,10 @@ def main(path):
             shutil.copyfile(f, f'{imgs_path}/{id}.tif')
             convert_label(path, lb_path, spectial, id)  # convert labels to YOLO format
 
+
 if __name__ == '__main__':
     argparses = argparse.ArgumentParser()
-    argparses.add_argument('--source_folder', type=str, default='/home/wdblink/Dataset/dense_region/VocFormat')
+    argparses.add_argument('--source_folder', type=str, default='/home/wdblink/Dataset/RGB-DSM/VocFormat')
     args = argparses.parse_args()
     source_folder = args.source_folder
     main(source_folder)

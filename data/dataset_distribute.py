@@ -20,7 +20,7 @@ def main(source_folder, target_folder):
     # 逐一移动文件夹
     for folder in image_folders:
         source_path = os.path.join(source_folder, folder)
-        target_path = os.path.join(target_folder, folder)
+        target_path = os.path.join(target_folder, 'JPEGImages', folder)
         shutil.move(source_path, target_path)
         print(f'Moved {folder} to {target_path}')
 
@@ -43,7 +43,7 @@ def main(source_folder, target_folder):
     for i in files:
         a = i.split('.')
         # 检查文件是否存在
-        if check_subfolders_for_file(target_folder, a[0]+'.tif'):
+        if check_subfolders_for_file(target_path, a[0]+'.tif'):
             # 使用哈希函数将文件分配到测试集或训练集
             if hash(a[0]) % 10 >= 1:
                 train_val.append(a[0])
@@ -59,7 +59,7 @@ def main(source_folder, target_folder):
                 ts += a[0] + '\n'
         else:
             # 输出文件不存在的路径
-            print(os.path.join(target_folder, a[0]+'.tif') + " does not exist")
+            print(os.path.join(target_path, a[0]+'.tif') + " does not exist")
             # 可选：删除不存在的文件
             # os.remove(os.path.join(root_path, 'labels', a[0]+'.xml'))
 
@@ -94,8 +94,8 @@ def main(source_folder, target_folder):
 
 if __name__ == '__main__':
     argparses = argparse.ArgumentParser()
-    argparses.add_argument('--source_folder', type=str, default='/home/wdblink/Dataset/dense_region')
-    argparses.add_argument('--target_folder', type=str, default='/home/wdblink/Dataset/dense_region/VocFormat')
+    argparses.add_argument('--source_folder', type=str, default='/home/wdblink/Dataset/RGB-DSM')
+    argparses.add_argument('--target_folder', type=str, default='/home/wdblink/Dataset/RGB-DSM/VocFormat')
     args = argparses.parse_args()
     source_folder = args.source_folder
     target_folder = args.target_folder

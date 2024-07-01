@@ -7,10 +7,10 @@
 
 
 # train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
-train_rgb: /home/wdblink/Dataset/trees_dataset_VOC_613/VocFormat/images/trainval_rgb
-val_rgb: /home/wdblink/Dataset/dense_region/VocFormat/images/trainval_rgb
-train_ir: /home/wdblink/Dataset/trees_dataset_VOC_613/VocFormat/images/trainval_dsm
-val_ir: /home/wdblink/Dataset/dense_region/VocFormat/images/trainval_dsm
+train_rgb: /home/wdblink/Dataset/RGB-DSM/VocFormat/images/trainval_images
+val_rgb: /home/wdblink/Dataset/RGB-DSM/VocFormat/images/test_images
+train_ir: /home/wdblink/Dataset/RGB-DSM/VocFormat/images/trainval_images2
+val_ir: /home/wdblink/Dataset/RGB-DSM/VocFormat/images/test_images2
 
 # number of classes
 nc: 1
